@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<!-- Defines an empty canvas element -->
+	<!-- with the size of 640x480 pixels internal and projection size -->
+	<canvas id="a-canvas" width="640" height="480"></canvas>
+
+	<script>
+		// Draws 100 lines with a randomly generated color
+		function draw() {
+			// get the #a-canvas from the DOM,
+			// request a drawing context
+			// generate a random color split by r, g and b
+			var canvas = document.getElementById('a-canvas'),
+			context = canvas.getContext('2d'),
+			randomX = canvas.width * Math.random(),
+			randomY = canvas.height * Math.random(),
+			r	= Math.round(Math.random() * 255),
+			g	= Math.round(Math.random() * 255),
+			b	= Math.round(Math.random() * 255),
+			i;
+			// paint the canvas in a solid black
+			// by drawing a hughe black rectangle
+			// onto the canvas
+			context.fillStyle = '#000000';
+			context.strokeStyle = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+			context.fillRect(0, 0, canvas.width, canvas.height);
+			context.beginPath();
+			context.moveTo(randomX, randomY);
+			// draw a 100 lines, pointing towards
+			// randomly generated locations within
+			// the canvas’ dimensions.
+			for(i = 0; i < 100; i++) {
+				randomX = canvas.width * Math.random();
+				randomY = canvas.height * Math.random();
+				context.lineTo(randomX, randomY);
+			}
+			// submit the drawing by calling stroke
+			// and closing the 'path' of lines
+			context.stroke();
+			context.closePath();
+		}
+		draw();
+	</script>
+
+</body>
+</html>
+
